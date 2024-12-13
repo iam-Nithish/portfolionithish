@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="Vector (2).svg">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+  <title>About Me</title>
+  <style>
+    
+    body {
+      
+      margin: 0;
+      font-family: "Poppins", serif;
+      color: #ffffff;
+      background-color: #101010;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden; /* Hides horizontal scrollbar */
+      z-index: 1;
+     
+    }
+     /* Header Styles */
+     header {
+      position: fixed;
+      
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            
+           
+            background-color: #101010;
+            
+            z-index: 1000;
+        }
+
+       /* Initial logo style */
+.logo {
+    margin-left: 200px;
+    padding-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.logo img {
+    width: 40px; /* Adjust the width as needed */
+}
+
+
+
+
+        .logo:hover {
+            transform: scale(0.9);
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 2px;
+            margin-left: 20px;
+        }
+
+        nav ul li {
+            margin-left: 5px;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            color: #9e9e9e;
+            padding: 20px 0;
+            margin: 0 20px;
+            display: inline-block;
+            position: relative;
+            opacity: 0.75;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+
+        .nav-link::before {
+            transition: 300ms;
+            height: 3px;
+            content: "";
+            position: absolute;
+            background: linear-gradient(90deg, #ff0000, #ff7f7f);
+
+            width: 0%;
+            bottom: 15px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Theme Switch Button */
+        .theme-switch {
+            margin-right: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            position: absolute;
+        }
+        .slider {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: background-color 0.4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            background-color: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 4px;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #0044cc;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .theme-icons {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .time {
+            margin-right: 200px;
+            text-align: right;
+            display: flex;
+            gap: 10px;
+        }
+
+        .time p {
+            font-size: 16px;
+            color: #9e9e9e;
+            margin: 0;
+        }
+
+             /* Light theme styles */
+             body.light-theme {
+              background: linear-gradient( to top, #d1efff, #f7e5ff);
+            color: #000000;
+        }
+
+        body.light-theme header {
+          background: linear-gradient( to bottom, #d1efff, #f7e5ff);
+          color: #000000;
+        }
+
+        body.light-theme .nav-link {
+            color: #000000;
+        }
+
+        body.light-theme .rain-body{
+          background: linear-gradient( to bottom, #d1efff, #f7e5ff);
+
+        }
+
+        body.light-theme  .current-time{
+            color: #000000;
+           
+        }
+        body.light-theme  .day{
+            color: #000000;
+           
+        }
+
+        /* Hide light theme logo by default */
+.logo .light-logo {
+    display: none;
+}
+
+/* Show the light logo and hide the dark logo when in light theme */
+body.light-theme .logo .dark-logo {
+    display: none;
+}
+
+body.light-theme .logo .light-logo {
+    display: inline;
+}
+       
+
+        body.light-theme .nav-link:hover {
+            color: #000;
+        }
+        body.light-theme .time{
+          color: #000;
+        }
+
+        body.light-theme .about-container  {
+          font-weight: 400;
+            
+            color: #000000;
+        }
+
+        body.light-theme .resume {
+          color: black;
+            
+        }
+
+        body.light-theme .contact {
+          color: black;
+            
+        }
+        body.light-theme .Email {
+          color: black;
+            
+        }
+        body.light-theme .instagram {
+          color: black;
+            
+        }
+        body.light-theme .linkedin {
+          color: black;
+            
+        }
+        body.light-theme .course {
+          color: black;
+            
+        }
+
+        
+
+        body.light-theme .social-icons img {
+            filter: brightness(0) invert(0);
+        }
+        body.light-theme nav ul.show{
+            background: linear-gradient( to top, #d1efff, #f7e5ff);
+            color: #000000;
+            
+        }
+        body.light-theme .bar{
+            background-color: #000000;
+        }
+
+
+        .Email{
+          color: white;
+        }
+        .instagram{
+          color: white;
+        }
+
+        .linkedin{
+          color: white;
+        }
+
+
+
+
+    .video-container {
+      width: 100%;
+      max-width: 1000px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .sound-toggle {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .about-container {
+      color: #FFFFFF;
+      display: flex;
+      padding: 20px;
+      max-width: 1000px;
+      flex-wrap: wrap;
+      user-select: none;
+      font-weight: 100;
+      font-style: normal;
+    }
+    .text-section {
+      flex: 1;
+      padding-right: 20px;
+    }
+    .text-section h1 {
+      font-size: 2em;
+      font-weight: 500;
+    }
+    .desig {
+      font-size: 25px;
+      margin-top: 10px;
+      font-weight: 300;
+    }
+    .text-section p {
+      font-weight: 200;
+      line-height: 1.6;
+      margin-bottom: 1.2em;
+      text-align: justify;
+    }
+    .photo-section {
+      flex: 0.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-section video {
+      width: 300px;
+      height: 450px;
+      border-radius: 2%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+    }
+    .hobbies {
+      margin-top: 30px;
+      font-size: 1em;
+      font-weight: 400;
+    }
+    .emoji {
+      margin-top: 10px;
+      font-size: 25px;
+    }
+    .social {
+      margin-top: 10px;
+      font-size: 1em;
+      font-weight: 400;
+    }
+    .social a {
+      margin-right: 10px;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .experience-container {
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 50px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .experience-title {
+      
+      font-size: 1.5em;
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: left;
+      width: 100%;
+    }
+    .experience-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1000px;
+      margin: 20px 0;
+      height: 250px;
+    }
+    .one {
+      max-width: 200px;
+      max-height: 200px;
+      margin-right: 70px;
+      border-radius: 50%;
+    }
+
+    .experience-item img {
+      max-width: 200px;
+      max-height: 200px;
+      margin-right: 70px;
+      border-radius: 50%;
+    
+  }
+    /* Center the image for smaller screens */
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items horizontally */
+  }
+  
+  .experience-item img {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 0; /* Ensures no extra margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .experience-item img {
+    max-width: 100px;
+    max-height: 100px;
+    
+    margin: 0;
+  }
+}
+    
+
+    .experience-item .description {
+      max-width: 850px; /* Allowing more space for the text to match the 1000px layout */
+      font-size: 1em;
+      text-align: left;
+      line-height: 1.5;
+      font-weight: 200;
+    }
+    /* Styling for Google experience item */
+    .experience-google {
+      flex-direction: row;
+    }
+    /* extra curriculum styles */
+
+    .extra-container {
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 50px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .extra-title {
+      
+      font-size: 1.5em;
+      font-weight: 500;
+      
+      text-align: left;
+      width: 100%;
+    }
+    .extra-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1000px;
+      margin: 20px 0;
+      
+    }
+  
+    
+    .extra-item .description {
+      max-width: 1000px; /* Allowing more space for the text to match the 1000px layout */
+      font-size: 1em;
+      text-align: left;
+      line-height: 1.5;
+      font-weight: 200;
+    }
+    /* Styling for Google experience item */
+    .extra-google {
+      flex-direction: row;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1000px;
+      
+      
+    }
+
+    .contact-item .description {
+      max-width: 1000px; /* Allowing more space for the text to match the 1000px layout */
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 1.5;
+      font-weight: 200;
+      margin: 100px;
+    }
+    /* For tablets and smaller screens */
+@media (max-width: 768px) {
+  .contact-item .description {
+    max-width: 80%; /* Reduces width to fit smaller screens */
+    font-size: 1.2em; /* Slightly smaller font size */
+    margin: 50px auto; /* Reduces top/bottom margin */
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+  .contact-item .description {
+    max-width: 90%; /* Nearly full width on mobile */
+    font-size: 1em; /* Standard font size */
+    margin: 20px auto; /* Minimal top/bottom margin */
+  }
+}
+
+        /* Footer Styles */
+        footer {
+      width: 100%;
+      max-width: 100%;
+      padding: 10px;
+      text-align: center;
+      background-color: #111;
+      color: #fff;
+      margin-top: 100px;
+    }
+
+/* Responsive Styles */
+@media (max-width: 1000px) {
+  .video-container {
+    height: 120px;
+  }
+  .about-container {
+    padding: 15px;
+  }
+  .experience-container {
+    padding: 0 15px;
+  }
+  .experience-item .description,
+  .extra-item .description,
+  .contact-item .description {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .text-section {
+    padding-right: 0;
+    text-align: center;
+  }
+  .photo-section video {
+    width: 250px;
+    height: 375px;
+  }
+  .video-container {
+    height: 100px;
+  }
+  .experience-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .experience-title {
+    text-align: center;
+  }
+  .extra-container,
+  .contact-item,
+  .experience-container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-container h1 {
+    font-size: 1.5em;
+  }
+  .desig {
+    font-size: 20px;
+  }
+  .hobbies,
+  .social {
+    font-size: 0.9em;
+  }
+  .experience-title,
+  .extra-title {
+    font-size: 1.3em;
+  }
+  .sound-toggle {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+  footer {
+    padding: 5px;
+  }
+}
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #ffffff;
+    margin: 3px 0;
+    transition: transform 0.4s, opacity 0.4s;
+}
+
+/* Add active styles */
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(50deg) translate(5px, 5px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-50deg) translate(5px, -5px);
+}
+
+
+
+
+
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 1103px) {
+            header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                margin-left: 10px;
+            }
+
+            nav ul {
+                display: none; /* Hide the nav links by default */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute;
+                top: 60px; /* Position below header */
+                left: 0;
+                background-color: #1a1a1a;
+                width: 100%; /* Full width */
+                z-index: 10;
+                padding: 10px 0;
+            }
+
+            nav ul.show {
+                display: flex; /* Show the nav links when toggled */
+                margin: -5px;
+                background: #101010;
+            }
+
+            nav ul li {
+                margin: 10px 0; /* Space between links */
+            }
+
+            nav .nav-link {
+                padding: 10px 20px;
+                text-align: center;
+                display: block; /* Block display for links */
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger menu */
+            }
+
+            .theme-switch {
+                margin-right: 10px;
+            }
+
+            .time {
+                display: none;
+            }
+
+            .social-icons {
+                display: none; /* Hide social icons on smaller screens */
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr; /* One column layout for smaller screens */
+                padding: 10px; /* Adjust padding */
+            }
+
+            .name-section {
+                width: 100%; /* Full width for name section */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 36px; /* Smaller font size for name */
+            }
+
+            .designation {
+                font-size: 20px; /* Smaller font size for designation */
+            }
+
+            .explore-button {
+                font-size: 16px; /* Smaller button text */
+            }
+            .social-icons {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-right: 20px;
+            z-index: 10;
+        }
+
+        .social-icons img {
+            width: 25px;
+            transition: transform 0.2s;
+            filter: brightness(0) invert(2);
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+        
+
+
+        }
+
+        
+/* For mobile and tablet screens */
+@media (max-width: 768px) {
+  .experience-item {
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items in the column layout */
+  }
+
+  .experience-item img {
+    order: -1; /* Moves the image to the top */
+    margin-left: 0; /* Removes left margin on smaller screens */
+    margin-bottom: 10px; /* Adds some spacing below the image */
+    margin-top: 10px;
+  }
+
+  .experience-google{
+    margin-top: 80px;
+  }
+}
+
+
+:root{
+    --clr: #0f0;
+}
+.rain-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    background: #101010;
+    transform: scale(0.6);
+    margin-bottom: 50px;
+}
+
+
+
+.container {
+    position: relative;
+    
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: animateColor 5s linear infinite ;
+}
+
+@keyframes animateColor {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+.container .cloud {
+    position: relative;
+    width: 300px;
+    /* height: 300px; */
+    z-index: 100;
+    filter: drop-shadow(0 0 35px var(--clr));
+}
+
+.container .cloud h2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: #000;
+    font-size: 2em;
+    z-index: 1000;
+    font-weight: 400;
+    padding:0 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background: var(--clr);
+}
+
+.container .cloud h2::before {
+    content: '';
+    position: absolute;
+    top: -115px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100px;
+    width: 120%;
+    height: 100px;
+    background: var(--clr);
+}
+
+.container .cloud h2::after{
+    content: '';
+    position: absolute;
+    top: -150px;
+    left: 25px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--clr);
+    box-shadow: 120px -30px 0 10px var(--clr);
+} 
+
+.container .cloud .drop{
+  position: absolute;
+  top: 80px;
+  height: 20px;
+  line-height: 20px;
+  color: var(--clr);
+  transform-origin: bottom;
+  animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        transform: translateY(0) scaleY(0);
+        transform-origin: top;
+    }
+    10%{
+        transform: translateY(0) scaleY(0.25);
+        transform-origin: top;
+    }
+    20%{
+        transform: translateY(0) scaleY(1);
+        /* transform-origin: top; */
+    }
+    
+    70%{
+        transform: translateY(300px) scaleY(1);
+        transform-origin: bottom;
+    }
+    80%{
+        transform: translateY(300px) scaleY(1);
+        transform-origin: bottom;
+    }
+    100%{
+        transform: translateY(300px) scaleY(0);
+        transform-origin: bottom;
+        text-shadow: -180px 0 0 var(--clr), 180px 0 var(--clr);
+    }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <!-- Dark theme logo (default) -->
+      <a href="index.html">
+          <img src="Vector (2).svg" alt="Dark Logo" class="dark-logo">
+      </a>
+      
+      <!-- Light theme logo -->
+      <a href="index.html">
+          <img src="Vector (5).svg" alt="Light Logo" class="light-logo">
+      </a>
+  </div>
+  
+   
+    <nav>
+        <ul id="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="resume.html" class="nav-link">Resume</a></li>
+        </ul>
+    </nav>
+    
+
+    <!-- Theme Switch Button -->
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label class="slider" for="theme-toggle">
+            <div class="theme-icons">
+                <i class="fas fa-moon" style="color: #000000;"></i>
+                <i class=" fas fa-sun" style="color: #fbff06;"></i>
+            </div>
+        </label>
+    </div>
+
+    <div class="time">
+        <p class="day">Monday, Oct 7</p>
+        <p class="current-time" id="current-time">7:52:45 PM</p>
+    </div>
+
+
+    <div class="hamburger" id="hamburger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+  </div>
+</header>
+
+<div class="video-container">
+  <video id="introVideo" autoplay loop playsinline muted>
+    <source src="intro.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button class="sound-toggle" onclick="toggleSound()">🔈 Sound Off</button>
+</div>
+
+<div class="about-container">
+  <div class="text-section">
+    <h1>Hey, I am <span style="color: red;">Nithish Kumar 👋</span><br> 
+      <div class="desig">a Software Developer 👨‍💻 :)</div>
+  </h1>
+  <p>
+    Currently pursuing my Master's in <span class="course">Information Systems</span> with a specialization in <strong>Computer Software Engineering</strong> at <span style="color: red;">Northeastern University,<span style="color: rgb(255, 103, 103);"> Boston</span></span>, I am a passionate IT professional with a deep interest in coding, development, and innovative problem-solving.
+</p>
+  <p>Previously, I worked at <strong><span style="color: blue;">NTT Data</span></strong> as a Senior Associate in Information Technology, focusing on developing web applications using C#, MVC 5, and MVC 7. I also had the opportunity to contribute to projects as a Data Annotator at <strong><span style="color: blue;">Samsung</span></strong>, where I labeled and organized images to train AI cameras, collaborating with the development team to ensure data accuracy for project needs.</p>
+  <p>I completed my Bachelor of Engineering in Electronics and Communication Engineering (ECE) at Cambridge Institute of Technology, Bangalore. This academic foundation has equipped me with strong technical and problem-solving skills, driving my pursuit of excellence in the tech industry.</p>
+  <p>I believe in the power of collaboration and innovation, constantly pushing myself to explore new technologies and methodologies that enhance both my skills and my projects.</p>
+  
+    <div class="hobbies">
+      <strong>My Hobbies:</strong> <div class="emoji">🎮 🎧 ✈️ 🎦 </div>
+    </div>
+    <div class="social">
+      <a href="portfolioresume.pdf" target="_blank"><strong class="resume" style="text-decoration: underline;">resume</strong></a><span style="margin-left: 1px; margin-right: 4px;">○</span>
+      <a href="#contact"><strong class="contact" style="text-decoration: underline;">contact</strong></a>
+    </div>
+  </div>
+  <div class="photo-section">
+    <video autoplay loop muted playsinline>
+      <source src="Black Simple Animated Photo Collage Frame Mobile Video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<div class="experience-container">
+  <div class="experience-title">Work Experience :</div>
+  
+  <!-- Dell experience item -->
+  <div class="experience-item">
+    <img class="one" src="ntt dta.png" alt="Dell Logo">
+    <div class="description">
+      <p>
+        At <strong style="color:#2d77ff;">NTT Data</strong>, I work as a <strong>Info Technology Sr.Associate</strong> specializing in a .NET role. I focus on developing and enhancing web applications using <strong>C#</strong> and <strong>ASP.NET MVC</strong>. My responsibilities include building efficient and scalable solutions to meet client needs while leveraging my expertise in both <strong>MVC 5</strong> and <strong>MVC 7</strong> frameworks.
+    </p>
+    
+    </div>
+  </div>
+  
+  <!-- Google experience item with description on the left and image on the right -->
+  <div class="experience-item experience-google">
+    
+    <div class="description">
+      <p>
+        I worked at <strong style="color:#2d77ff;">Samsung</strong> as a Data Annotator, labeling and organizing images using <strong>Python</strong> to train AI cameras. This process helped the cameras recognize objects accurately. I collaborated closely with developers to ensure high data accuracy for project requirements.
+    </p>
+        </div>
+        <img src="samsung.png" alt="Google Logo">
+    
+  </div>
+
+  <div class="experience-item">
+    <img class="one" src="bsml.png" alt="Dell Logo">
+    <div class="description">
+      <p>
+        This <strong style="background-color: yellow; color: #000000;">internship</strong> at 
+        <strong style="background: linear-gradient(to right, #f90000, #1c55fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">
+            BSNL (Bharat Sanchar Nigam Limited)
+        </strong> focused on network protocols and telecommunications infrastructure, where I contributed to enhancing service quality.
+    </p>
+    
+      
+    
+    
+    </div>
+  </div>
+</div>
+<div class="extra-container">
+  <div class="extra-title">Extra Curricular Activities:</div>
+
+  
+  <!-- Dell experience item -->
+  <div class="extra-item">
+    <div class="description">
+      👉 <strong>Scouts and Guides:</strong> Actively participated in the Scouts and Guides program, demonstrating leadership, teamwork, and community service. Earned the prestigious <strong>Rajya Puraskar Award</strong> for exemplary performance and dedication.
+    </div>
+</div>
+
+<!-- Google experience item with description on the left and image on the right -->
+<div class="extra-item extra-google">
+    <div class="description">
+      👉 <strong>Sports Club:</strong> Engaged in various sports activities through active membership in the Sports Club, promoting physical fitness, teamwork, and discipline.
+    </div>
+</div>
+
+<div class="extra-item">
+    <div class="description">
+      👉 <strong>Project Intuit 2022:</strong> Participated in <strong>Project Intuit 2022</strong> to demonstrate our project and secured <strong>1st prize</strong>, showcasing innovation and excellence.
+    </div>
+</div>
+
+  <div class="rain-body">
+    <div class="container">
+        <div class="cloud">
+            <h2>iam Nithish</h2>
+        </div>
+    </div>
+
+</div>
+
+  
+
+  <div id="contact" class="contact-item">
+   
+    <div class="description">
+      ☕  I'm always interested in connecting with fellow developers of all experience levels — feel free to reach out by  <a href="mailto:iamnithish.india@gmail.com" target="_blank"><strong class="Email" style="text-decoration: underline; ">Email </strong></a>, <a href="https://www.linkedin.com/in/nithish-kumar-km/" target="_blank"><strong class="linkedin" style="text-decoration: underline; ">LinkedIn</strong></a> or <a href="https://www.instagram.com/always_nithish" target="_blank"><strong class="instagram" style="text-decoration: underline;">Instagram</strong></a>.    </div>
+  </div>
+  
+</div>
+
+<footer>
+  <p>&copy; 2024 Nithish Kumar. All rights reserved.</p>
+  
+</footer>
+
+<script>
+  // Theme toggle functionality
+  const toggleSwitch = document.getElementById('theme-toggle');
+       
+        
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('light-theme');
+        });
+
+          function updateTime() {
+      const now = new Date();
+      const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      const dateOptions = { weekday: 'long', month: 'short', day: 'numeric' };
+
+      // Format the time
+      document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', timeOptions);
+
+      // Format the day and month
+      document.querySelector('.day').textContent = now.toLocaleDateString('en-US', dateOptions);
+  }
+
+  // Update time and date every second
+  setInterval(updateTime, 1000);
+
+
+
+
+
+  const video = document.getElementById("introVideo");
+  const soundToggleButton = document.querySelector(".sound-toggle");
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+         // Hamburger menu toggle
+         hamburger.addEventListener('click', () => {
+    // Toggle the active class for the hamburger animation
+    hamburger.classList.toggle('active');
+    
+    // Toggle the show class for the navigation links
+    navLinks.classList.toggle('show');
+
+
+        });
+
+  function toggleSound() {
+    if (video.muted) {
+      video.muted = false;
+      soundToggleButton.textContent = "🔊 Sound On";
+    } else {
+      video.muted = true;
+      soundToggleButton.textContent = "🔈 Sound Off";
+    }
+  }
+
+
+  
+function randomText(){
+    var text = (" NITHISH ")
+    letters =text[Math.floor(Math.random() * text.length)];
+    return letters;
+}
+
+function rain() {
+    let cloud = document.querySelector('.cloud');
+    let e = document.createElement('div');
+    e.classList.add('drop');
+    cloud.appendChild(e);
+
+    let left = Math.floor(Math.random() * 300)
+    let size = Math.random() * 1.5;
+    let duration = Math.random() *1;
+
+    e.innerText = randomText();
+    e.style.left = left + 'px';
+    e.style.fontSize = 0.5+size +'em';
+    e.style.animationDuration = 1+duration+'s';
+
+      setTimeout(function(){
+      cloud.removeChild(e)
+      },2000)
+}
+
+setInterval(function(){
+    rain()
+},20);
+</script>
+
+</body>
+</html>

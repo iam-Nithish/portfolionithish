@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Progress</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: 'Poppins', sans-serif; /* Poppins font */
+            background-color: #101010; /* Dark background color */
+            text-align: center; /* Center text */
+            font-size: 13px; /* Base font size */
+            color: white;
+            position: relative; /* To position the back button */
+        }
+        .back-button {
+            position: absolute; /* Position it in the top right */
+            top: 20px;
+            right: 20px;
+            background-color: #007BFF; /* Background color */
+            color: white; /* Text color */
+            padding: 8px 12px; /* Padding */
+            font-size: 14px; /* Font size */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            font-weight: bold; /* Bold text */
+        }
+        .back-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        a {
+            display: block; /* Each link in a new line */
+            margin: 5px 0; /* Spacing between links */
+            text-decoration: none; /* Remove underline */
+            color: #007BFF; /* Link color */
+            font-weight: 600; /* Bold links */
+            font-size: 20px; /* Larger font size for download link */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">Back</a>
+    <div>
+        <h1>This page is under progress</h1>
+        <p>Check out my resume:</p>
+        <a href="portfolioresume.pdf">Download</a>
+    </div>
+</body>
+</html>

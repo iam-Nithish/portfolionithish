@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
+        /* Reset basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: rgb(35, 35, 35);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            transition: transform 0.5s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Light theme styles */
+        body.light-theme {
+            background: rgba(140, 255, 255, 0.864);
+            color: #333;
+        }
+
+        body.light-theme .nav-link {
+            color: #333;
+        }
+
+        body.light-theme .nav-link:hover {
+            color: #000;
+        }
+
+        body.light-theme .explore-button {
+            background-color: #333;
+            color: #fff;
+        }
+
+        body.light-theme .explore-button:hover {
+            background-color: #555;
+        }
+
+        body.light-theme .social-icons img {
+            filter: brightness(0) invert(0);
+        }
+
+        /* Stars Background Styling */
+        .wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            margin-left: 200px;
+            padding-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            width: 40px;
+        }
+
+        .logo:hover {
+            transform: scale(0.9);
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 2px;
+            margin-left: 20px;
+        }
+
+        nav ul li {
+            margin-left: 5px;
+        }
+
+        .nav-link {
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            color: #9e9e9e;
+            padding: 20px 0;
+            margin: 0 20px;
+            display: inline-block;
+            position: relative;
+            opacity: 0.75;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+
+        .nav-link::before {
+            transition: 300ms;
+            height: 3px;
+            content: "";
+            position: absolute;
+            background: linear-gradient(90deg, #0044cc, #00ccff);
+            width: 0%;
+            bottom: 15px;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Theme Switch Button */
+        .theme-switch {
+            margin-right: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .slider {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: background-color 0.4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            background-color: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 4px;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #0044cc;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .theme-icons {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .time {
+            margin-right: 200px;
+            text-align: right;
+            display: flex;
+            gap: 10px;
+        }
+
+        .time p {
+            font-size: 16px;
+            color: #9e9e9e;
+            margin: 0;
+        }
+
+        .social-icons {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-right: 20px;
+            z-index: 10;
+        }
+
+        .social-icons img {
+            width: 25px;
+            transition: transform 0.2s;
+            filter: brightness(0) invert(2);
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Wrapper for Grid to Center it */
+        .grid-wrapper {
+            margin: 0 40px; /* Same margin as the navbar */
+            display: flex;
+            justify-content: center;
+            flex-grow: 1; /* Allow it to grow */
+        }
+
+        /* Grids for Name and 3D Model */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+            gap: 20px; /* Space between the grids */
+            padding: 50px; /* Padding around the grids */
+            align-items: center; /* Center content vertically */
+            justify-items: center; /* Center content horizontally */
+            height: 500px;
+        }
+
+        .name-section {
+            text-align: center;
+            z-index: 5;
+            width: 300px; /* Fixed width for name section */
+        }
+
+        .name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: bold;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .designation {
+            font-size: 24px;
+            color: #9e9e9e;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Placeholder for 3D model */
+        .model-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1b2735; /* Dark background for contrast */
+            height: 100%; /* Full height */
+            border-radius: 10px;
+            overflow: hidden; /* Hide overflow for clean edges */
+            width: 500px; /* Fixed width for model container */
+        }
+
+        /* Placeholder for the transformer 3D model */
+        .model-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: transparent; /* Placeholder color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; /* Text color for the placeholder */
+            font-size: 20px;
+        }
+
+        .explore-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: transparent;
+        }
+
+        .explore-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #0044cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .explore-button:hover {
+            background-color: #00ccff;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 3px;
+            width: 25px;
+            background-color: #ffffff;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                margin-left: 10px;
+            }
+
+            nav ul {
+                display: none; /* Hide the nav links by default */
+                flex-direction: column; /* Stack links vertically */
+                position: absolute;
+                top: 60px; /* Position below header */
+                left: 0;
+                background-color: #1a1a1a;
+                width: 100%; /* Full width */
+                z-index: 10;
+                padding: 10px 0;
+            }
+
+            nav ul.show {
+                display: flex; /* Show the nav links when toggled */
+            }
+
+            nav ul li {
+                margin: 10px 0; /* Space between links */
+            }
+
+            nav .nav-link {
+                padding: 10px 20px;
+                text-align: center;
+                display: block; /* Block display for links */
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger menu */
+            }
+
+            .theme-switch {
+                margin-right: 10px;
+            }
+
+            .time {
+                margin-right: 10px;
+            }
+
+            .social-icons {
+                display: none; /* Hide social icons on smaller screens */
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr; /* One column layout for smaller screens */
+                padding: 10px; /* Adjust padding */
+            }
+
+            .name-section {
+                width: 100%; /* Full width for name section */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 36px; /* Smaller font size for name */
+            }
+
+            .designation {
+                font-size: 20px; /* Smaller font size for designation */
+            }
+
+            .explore-button {
+                font-size: 16px; /* Smaller button text */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="path/to/logo.png" alt="Logo">
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav>
+            <ul id="nav-links">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">About</a></li>
+                <li><a href="#" class="nav-link">Projects</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <label class="slider" for="theme-toggle">
+                <div class="theme-icons">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </div>
+            </label>
+        </div>
+        <div class="time">
+            <p id="current-time"></p>
+        </div>
+        <div class="social-icons">
+            <a href="#"><img src="path/to/facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="path/to/twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="path/to/linkedin-icon.png" alt="LinkedIn"></a>
+        </div>
+    </header>
+
+    <div class="grid-wrapper">
+        <div class="grid-container">
+            <div class="name-section">
+                <h1 class="name"><span style="color:red; font-size: 64px;">N</span>ithish Kumar</h1>
+                <div class="designation">
+                    <span>I am</span> <span class="typing-effect"></span>
+                </div>
+            </div>
+            <div class="model-container">
+                <div class="model-placeholder">3D Model Placeholder</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="explore-section">
+        <a href="#" class="explore-button">Explore My Work</a>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTime = document.getElementById('current-time');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        // Toggle theme
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('light-theme');
+        });
+
+        // Hamburger menu toggle
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Function to update the current time
+        function updateTime() {
+            const now = new Date();
+            currentTime.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to set time immediately
+
+        // Typing effect
+        const typingEffect = document.querySelector('.typing-effect');
+        const textArray = ['a software developer', 'a web designer', 'an open source enthusiast'];
+        let index = 0;
+
+        function type() {
+            typingEffect.textContent = '';
+            const text = textArray[index];
+            let charIndex = 0;
+
+            const typingInterval = setInterval(() => {
+                if (charIndex < text.length) {
+                    typingEffect.textContent += text.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    setTimeout(() => {
+                        index = (index + 1) % textArray.length; // Cycle through the texts
+                        type(); // Restart the typing effect
+                    }, 1000); // Pause before next text
+                }
+            }, 150); // Typing speed
+        }
+
+        type(); // Start the typing effect
+    </script>
+</body>
+
+</html>
